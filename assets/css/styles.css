@@ -187,7 +187,11 @@ html {
     pointer-events: none; /* Prevent interaction with the icon */
 }
 
-
+.card-img-bottom {
+    object-fit: cover; /* Ensures the image fits without distortion */
+    height: 200px; /* Set the desired uniform height */
+    width: 100%; /* Make the image fill the card width */
+}
 
 
 @media (min-width: 768px) { 
