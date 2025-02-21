@@ -51,11 +51,15 @@ html {
 .section-bg-img--1::before {
     width: 100%;
     height: 100%;
-    background: url('../images/logo.svg') center/contain no-repeat; /* Image fills the div */
+    background: url('../images/map03.jpeg') center/cover no-repeat; /* Image fills the div */
 }
 
 .section-bg-img--2::before {
     background: url('../images/map06.jpg') center/cover no-repeat; /* Image fills the div */
+}
+
+.section-bg-img--logo::before {
+    background: url('../images/logo.svg') center/contain no-repeat; /* Image fills the div */
 }
 
 .section-content {
