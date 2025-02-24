@@ -20,19 +20,19 @@
     
     <header>
         <div id="home" class="homeAnchor"></div>
-        <!--navbar-->
-        <!--<nav id="appear" class="d-none d-md-flex bg-light py-0 navbar-sticky navbar-light navbar-expand-lg lh-base px-md-6">
+        <!--sticky navbar for >sm device -->
+        <nav id="appear" class="d-none d-md-flex flex-column bg-light py-0 navbar-sticky navbar-light navbar-expand-lg lh-base px-md-6">
 
-            <div class="container-fluid">
+            <div class="d-flex flex-row">
 
-                <a class="navbar-brand p-1" href="#">
+                <a class="navbar-brand  p-1" href="#">
 
                     <img src="./assets/images/logo.svg" alt="" height="32">
 
                 </a>
 
 
-                <ul class="navbar-nav me-auto me-lg-0 ms-md-auto mb-2 mb-md-0 m-0">
+                <ul class="navbar-nav d-flex flex-row ms-auto mt-2">
 
                     <li class="nav-item p-0">
 
@@ -70,28 +70,30 @@
 
             </div>
 
-        </nav>-->
+        </nav>
         <!--navbar end-->
     </header>
 
     <!--Home-->
     <section
-    class="h-30vh h-md-80vh py-4 px-md-6 section-wrapper z-1 section-bg-img--1 ">
+    class="h-30vh h-md-80vh py-4 px-md-6 section-wrapper z-1 section-bg-img--1""">
 
-            <!--<div class="section-background-overlay section-background-overlay--opacity2"></div>-->
+            <div class="section-background-overlay section-background-overlay--opacity2"></div>
 
             <div class="d-flex flex-column h-30vh h-md-80vh mt-md-4 section-wrapper z-1 px-3">
 
-                <!--sticky & mobile navbar start-->
-                <div class="d-flex justify-content-end">
+                <!--mobile and non sticky navbar start-->
+                <!--Also acts as trigger el for sticky nav for >sm navbar-->
+                <div class="d-flex justify-content-end" 
+                id="trigger">
 
-                    <nav id="trigger" class="navbar-light navbar-toggler position-fixed navbar-expand-lg lh-base">
+                    <nav  class="navbar-light navbar-toggler position-fixed position-md-relative navbar-expand-lg lh-base">
 
                         <div class="d-flex flex-column justify-content-end me-0">
                             
                             <input type="checkbox" id="menu-toggle" hidden>
-                            <label for="menu-toggle" class="hamburger bg-light rounded ms-auto">
-                                <span></span>
+                            <label for="menu-toggle" class="hamburger bg-light rounded ms-auto"">
+                                <span ></span>
                                 <span></span>
                                 <span></span>
                             </label>
@@ -103,7 +105,7 @@
                                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
                                     <li class="nav-item"><a class="nav-link"  href="#faq">FAQs</a></li>
-                                    <li class="nav-item"><a class="nav-link href="#contact">Contact</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                                 </ul>
                             </div>
             

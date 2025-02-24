@@ -261,7 +261,7 @@ html {
     display: block;
     width: 32px;
     height: 4px;
-    background: #333;
+    background-color: #6c757d!important;
     border-radius: 5px;
     transition: 0.4s ease;
 }
@@ -295,3 +295,6 @@ html {
     transform: translateY(-10px) rotate(-45deg);
 }
 
+.bg-muted{
+    background-color: #6c757d!important;
+}
