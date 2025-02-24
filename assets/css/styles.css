@@ -274,6 +274,19 @@ html {
 
 }
 
+@media (min-width: 768px) {
+    .navbar-collapse {
+        max-height: 100%;
+        opacity: 1;
+
+    }
+
+    .fs-md-6{
+        font-size: 0.8rem;
+    }
+    
+}
+
 /* When Checked - Slide Down */
 #menu-toggle:checked ~ .navbar-collapse {
     max-height: 500px; /* Adjust based on content */
