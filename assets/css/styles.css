@@ -272,6 +272,7 @@ html {
     opacity: 0;
     overflow: hidden;
     transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+
 }
 
 /* When Checked - Slide Down */
