@@ -20,8 +20,8 @@
     
     <header>
         <div id="home" class="homeAnchor"></div>
-        <!--sticky navbar-->
-        <nav id="appear" class="d-none d-md-flex bg-light py-0 navbar-sticky navbar-light navbar-expand-lg lh-base px-md-6">
+        <!--navbar-->
+        <!--<nav id="appear" class="d-none d-md-flex bg-light py-0 navbar-sticky navbar-light navbar-expand-lg lh-base px-md-6">
 
             <div class="container-fluid">
 
@@ -70,7 +70,7 @@
 
             </div>
 
-        </nav>
+        </nav>-->
         <!--navbar end-->
     </header>
 
@@ -78,62 +78,33 @@
     <section
     class="h-30vh h-md-80vh py-4 px-md-6 section-wrapper z-1 section-bg-img--1 ">
 
-            <div class="section-background-overlay section-background-overlay--opacity2"></div>
+            <!--<div class="section-background-overlay section-background-overlay--opacity2"></div>-->
 
             <div class="d-flex flex-column h-30vh h-md-80vh mt-md-4 section-wrapper z-1 px-3">
 
-                <!--home navbar start-->
+                <!--sticky & mobile navbar start-->
                 <div class="d-flex justify-content-end">
 
                     <nav id="trigger" class="navbar-light navbar-toggler position-fixed navbar-expand-lg lh-base">
 
                         <div class="d-flex flex-column justify-content-end me-0">
                             
-                            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            
-                                <span class="navbar-toggler-icon"></span>
-            
-                            </button>
-            
-                            <div class="collapse rounded navbar-collapse bg-light bg-md-transparent px-5 py-3 px-md-0 ms-md-auto border border-light" id="navbarSupportedContent">
-            
-                                <ul class="navbar-nav d-flex flex-column flex-md-row ">
-            
-                                    <li class="nav-item">
-            
-                                        <a class="nav-link" aria-current="page" href="#home">Home</a>
-            
-                                    </li>
-            
-                                    <li class="nav-item">
-            
-                                        <a class="nav-link" aria-current="page" href="#about">About</a>
-            
-                                    </li>
-    
-                                    
-                                    <li class="nav-item">
-            
-                                        <a class="nav-link" aria-current="page" href="#services">Services</a>
-            
-                                    </li>
-    
-                                    <li class="nav-item">
-            
-                                        <a class="nav-link" aria-current="page" href="#faq">FAQs</a>
-            
-                                    </li>
-            
-                                    <li class="nav-item">
-            
-                                        <a class="nav-link" aria-current="page" href="#contact">Contact</a>
-            
-                                    </li>
-            
-            
+                            <input type="checkbox" id="menu-toggle" hidden>
+                            <label for="menu-toggle" class="hamburger bg-light rounded">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </label>
+                            
+                            <!-- Navbar -->
+                            <div class="navbar-collapse">
+                                <ul class="navbar-nav d-flex flex-column flex-md-row bg-light rounded">
+                                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#faq">FAQs</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                                 </ul>
-            
-            
                             </div>
             
                         </div>
@@ -583,6 +554,7 @@
         entries.forEach((entry) => {
         if (!entry.isIntersecting) {
             appearElement.classList.add('visible'); // Slide in and fade in
+            triggerElement.class.add('bg-light');
         } else {
             appearElement.classList.remove('visible'); // Slide out and fade out
         }
