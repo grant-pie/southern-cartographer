@@ -219,7 +219,6 @@ html {
 }
 .image-container--styles {
     width: 100%;
-    padding-top: 50%; /* Reduced from 100% to 50% */
     position: relative;
 }
 
