@@ -440,7 +440,7 @@
 
             <form 
             id="contactForm"
-            action="http://localhost:3000/contact"
+            action="#"
             method="POST"
             >
 
@@ -477,9 +477,15 @@
                 </div>
 
                 <!-- Form submit button -->
-                <div class="d-grid d-md-flex ">
+                <div class="d-grid d-md-flex">
 
-                    <button class="btn btn-dark border-dark" type="submit">Submit</button>
+                    <button id="submitBtn" class="btn btn-dark border-dark" type="submit">
+
+                        <span id="btnText">Submit</span>
+
+                        <span id="btnSpinner" class="spinner-border spinner-border-sm ms-2" role="status" style="display: none;"></span>
+
+                    </button>
 
                 </div>
 
@@ -616,9 +622,16 @@
         //form submision
         const form = document.getElementById('contactForm');
         const responseDiv = document.getElementById('response');
+        const submitBtn = document.getElementById('submitBtn');
+        const btnText = document.getElementById('btnText');
+        const btnSpinner = document.getElementById('btnSpinner');
 
         form.addEventListener('submit', async (event) => {
             event.preventDefault(); // Prevent form from refreshing the page
+
+            // Show the spinner and hide the button text
+            btnSpinner.style.display = 'inline-block';
+            btnText.style.display = 'none';
 
             // Gather form data into an object matching your DTO
             const payload = {
@@ -628,36 +641,40 @@
             };
 
             try {
-            const res = await fetch('http://localhost:3000/mail/send', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(payload)
-            });
+                const res = await fetch('http://localhost:3000/mail/send', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
 
-            
-            const data = await res.json();
-            console.log(data);
-            if (res.ok) {
-                // Success: email was sent
-                responseDiv.innerHTML =
-                '<p class="success">Email sent successfully!</p>';
-            } else {
-                // If NestJS validation fails, it should return an error message.
-                // You might receive an object with a message property or validation errors.
-                let errorMessage = data.message || 'Failed to send email.';
-                if (data.error && data.message) {
-                    errorMessage = `${data.error}: ${data.message}`;
+                const data = await res.json();
+
+                if (res.ok) {
+                    // Success: email was sent
+                    responseDiv.innerHTML = '<p class="success">Email sent successfully!</p>';
+                    // Clear the form
+                    form.reset();
+                } else {
+                    // If NestJS validation fails, it should return an error message.
+                    let errorMessage = data.message || 'Failed to send email.';
+                    if (data.error && data.message) {
+                        errorMessage = `${data.error}: ${data.message}`;
+                    }
+                    responseDiv.innerHTML = `<p class="error">${errorMessage}</p>`;
                 }
-                responseDiv.innerHTML = `<p class="error">${errorMessage}</p>`;
-            }
             } catch (error) {
                 console.error('Error:', error);
                 responseDiv.innerHTML =
-                    '<p class="error">An unexpected error occurred. Please try again later.</p>';
+                '<p class="error">An unexpected error occurred. Please try again later.</p>';
+            } finally {
+                // Hide the spinner and show the button text regardless of success or error
+                btnSpinner.style.display = 'none';
+                btnText.style.display = 'inline';
             }
         });
+
     </script>
     
 </body>
