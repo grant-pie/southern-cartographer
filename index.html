@@ -440,7 +440,7 @@
 
             <form 
             id="contactForm"
-            action="https://formspree.io/f/myzkqbqb"
+            action="http://localhost:3000/contact"
             method="POST"
             >
 
@@ -463,16 +463,16 @@
                 <!-- Message input -->
                 <div class="mb-3">
 
-                    <label class="form-label" for="message">
+                    <label class="form-label" for="messageInfo">
                         Message
-                        <button id="message" type="button" class="btn btn-lg rounded-circle p-0" data-bs-toggle="popover" data-bs-trigger="focus" title="Need help getting started?" data-bs-content="Share the purpose of your map—are you creating for a book, research, or a unique project? Let us know any design elements you’d love to see or if your map is set in a fictional world. The more details, the better!">
+                        <button id="messageInfo" type="button" class="btn btn-lg rounded-circle p-0" data-bs-toggle="popover" data-bs-trigger="focus" title="Need help getting started?" data-bs-content="Share the purpose of your map—are you creating for a book, research, or a unique project? Let us know any design elements you’d love to see or if your map is set in a fictional world. The more details, the better!">
                             <i class="fa fa-question-circle" aria-hidden="true"></i>
                         </button>
                             
                         
                     </label>
 
-                    <textarea class="form-control border-dark" name="message" placeholder="Message" style="height: 10rem;" required></textarea>
+                    <textarea id="message" class="form-control border-dark" name="message" placeholder="Message" style="height: 10rem;" required></textarea>
 
                 </div>
 
@@ -483,6 +483,7 @@
 
                 </div>
 
+                <div id="response" class="mt-4"></div>
             </form>
 
         </div>
@@ -611,8 +612,52 @@
         var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
             return new bootstrap.Popover(popoverTriggerEl)
         })
-    
-    
+        
+        //form submision
+        const form = document.getElementById('contactForm');
+        const responseDiv = document.getElementById('response');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent form from refreshing the page
+
+            // Gather form data into an object matching your DTO
+            const payload = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+            const res = await fetch('http://localhost:3000/mail/send', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            
+            const data = await res.json();
+            console.log(data);
+            if (res.ok) {
+                // Success: email was sent
+                responseDiv.innerHTML =
+                '<p class="success">Email sent successfully!</p>';
+            } else {
+                // If NestJS validation fails, it should return an error message.
+                // You might receive an object with a message property or validation errors.
+                let errorMessage = data.message || 'Failed to send email.';
+                if (data.error && data.message) {
+                    errorMessage = `${data.error}: ${data.message}`;
+                }
+                responseDiv.innerHTML = `<p class="error">${errorMessage}</p>`;
+            }
+            } catch (error) {
+                console.error('Error:', error);
+                responseDiv.innerHTML =
+                    '<p class="error">An unexpected error occurred. Please try again later.</p>';
+            }
+        });
     </script>
     
 </body>
